@@ -1,6 +1,6 @@
-import * as THREE from '/node_modules/three/build/three.module.js';
-import { OrbitControls } from '/node_modules/three/examples/jsm/controls/OrbitControls.js';
-import { GLTFLoader } from '/node_modules/three/examples/jsm/loaders/GLTFLoader.js';
+import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.152.2/build/three.module.js';
+import { OrbitControls } from 'https://cdn.jsdelivr.net/npm/three@0.152.2/examples/jsm/controls/OrbitControls.js';
+import { GLTFLoader } from 'https://cdn.jsdelivr.net/npm/three@0.152.2/examples/jsm/loaders/GLTFLoader.js';
 
 // DOM elements
 const dropdownContent = document.querySelector('.dropdown-content');
@@ -14,6 +14,7 @@ const helpContainer = document.querySelector('.help-container');
 
 const worldPosition = new THREE.Vector3();
 const worldQuat = new THREE.Quaternion();
+
 const cubePivot = new THREE.Object3D(); // pivot axis for entire cube
 
 let root;
@@ -49,389 +50,389 @@ const facePivots = {
 const algortihms = {
   'Orient Last Layer (OLL)': {
     'Dot': {
-      icon: '/images/oll/dot.png',
+      icon: 'public/images/oll/dot.png',
       algorithm: "F R U R' U' F' f R U R' U' f'"
     },
     'Horizontal': {
-      icon: '/images/oll/horizontal.png',
+      icon: 'public/images/oll/horizontal.png',
       algorithm: "F R U R' U' F'"
     },
     'L-shape': {
-      icon: '/images/oll/l-shape.png',
+      icon: 'public/images/oll/l-shape.png',
       algorithm: "f R U R' U' f'"
     },
     'Antisune': {
-      icon: '/images/oll/antisune.png',
+      icon: 'public/images/oll/antisune.png',
       algorithm: "R U2 R' U' R U' R'"
     },
     'Cross-opposite': {
-      icon: '/images/oll/cross-opposite.png',
+      icon: 'public/images/oll/cross-opposite.png',
       algorithm: "R U R' U R U' R' U R U2 R'"
     },
     'L-corners': {
-      icon: '/images/oll/l-corners.png',
+      icon: 'public/images/oll/l-corners.png',
       algorithm: "F R' F' r U R U' r'"
     },
     'Cross-adjacent': {
-      icon: '/images/oll/cross-adjacent.png',
+      icon: 'public/images/oll/cross-adjacent.png',
       algorithm: "R U2 R2 U' R2 U' R2 U2 R"
     },
     'Sune': {
-      icon: '/images/oll/sune.png',
+      icon: 'public/images/oll/sune.png',
       algorithm: "R U R' U R U2 R'"
     },
     'T-side': {
-      icon: '/images/oll/t-side.png',
+      icon: 'public/images/oll/t-side.png',
       algorithm: "r U R' U' r' F R F'"
     },
     'T-front': {
-      icon: '/images/oll/t-front.png',
+      icon: 'public/images/oll/t-front.png',
       algorithm: "R2 D R' U2 R D' R' U2 R'"
     },
   },
 
   'Advanced OLL': {
     '29': {
-      icon: '/images/oll/advanced/29.png',
+      icon: 'public/images/oll/advanced/29.png',
       algorithm: "R U R' U' R U' R' F' U' F R U R'"
     },
     '30': {
-      icon: '/images/oll/advanced/30.png',
+      icon: 'public/images/oll/advanced/30.png',
       algorithm: "F R' F R2 U' R' U' R U R' F2"
     },
     '41': {
-      icon: '/images/oll/advanced/41.png',
+      icon: 'public/images/oll/advanced/41.png',
       algorithm: "R U R' U R U2 R' F R U R' U' F'"
     },
     '42': {
-      icon: '/images/oll/advanced/42.png',
+      icon: 'public/images/oll/advanced/42.png',
       algorithm: "R' U' R U' R' U2 R F R U R' U' F'"
     },
     '39': {
-      icon: '/images/oll/advanced/39.png',
+      icon: 'public/images/oll/advanced/39.png',
       algorithm: "L F' L' U' L U F U' L'"
     },
     '40': {
-      icon: '/images/oll/advanced/40.png',
+      icon: 'public/images/oll/advanced/40.png',
       algorithm: "R' F R U R' U' F' U R"
     },
     '34': {
-      icon: '/images/oll/advanced/34.png',
+      icon: 'public/images/oll/advanced/34.png',
       algorithm: "R U R2 U' R' F R U R U' F'"
     },
     '46': {
-      icon: '/images/oll/advanced/46.png',
+      icon: 'public/images/oll/advanced/46.png',
       algorithm: "R' U' R' F R F' U R"
     },
     '28': {
-      icon: '/images/oll/advanced/28.png',
+      icon: 'public/images/oll/advanced/28.png',
       algorithm: "r U R' U' r' R U R U' R'"
     },
     '57': {
-      icon: '/images/oll/advanced/57.png',
+      icon: 'public/images/oll/advanced/57.png',
       algorithm: "R U R' U' M' U R U' r'"
     },
     '21': {
-      icon: '/images/oll/advanced/21.png',
+      icon: 'public/images/oll/advanced/21.png',
       algorithm: "R U2 R' U' R U R' U' R U' R'"
     },
     '22': {
-      icon: '/images/oll/advanced/22.png',
+      icon: 'public/images/oll/advanced/22.png',
       algorithm: "R U2 R2 U' R2 U' R2 U2 R"
     },
     '23': {
-      icon: '/images/oll/advanced/23.png',
+      icon: 'public/images/oll/advanced/23.png',
       algorithm: "R2 D' R U2 R' D R U2 R"
     },
     '24': {
-      icon: '/images/oll/advanced/24.png',
+      icon: 'public/images/oll/advanced/24.png',
       algorithm: "r U R' U' r' F R F'"
     },
     '25': {
-      icon: '/images/oll/advanced/25.png',
+      icon: 'public/images/oll/advanced/25.png',
       algorithm: "F' r U R' U' r' F R"
     },
     '26': {
-      icon: '/images/oll/advanced/26.png',
+      icon: 'public/images/oll/advanced/26.png',
       algorithm: "R U2 R' U' R U' R'"
     },
     '27': {
-      icon: '/images/oll/advanced/27.png',
+      icon: 'public/images/oll/advanced/27.png',
       algorithm: "R U R' U R U2 R'"
     },
     '1': {
-      icon: '/images/oll/advanced/1.png',
+      icon: 'public/images/oll/advanced/1.png',
       algorithm: "R U2 R2 F R F' U2 R' F R F'"
     },
     '2': {
-      icon: '/images/oll/advanced/2.png',
+      icon: 'public/images/oll/advanced/2.png',
       algorithm: "r U r' U2 r U2 R' U2 R U' r'"
     },
     '3': {
-      icon: '/images/oll/advanced/3.png',
+      icon: 'public/images/oll/advanced/3.png',
       algorithm: "r' R2 U R' U r U2 r' U M'"
     },
     '4': {
-      icon: '/images/oll/advanced/4.png',
+      icon: 'public/images/oll/advanced/4.png',
       algorithm: "M U' r U2 r' U' R U' R' M'"
     },
     '17': {
-      icon: '/images/oll/advanced/17.png',
+      icon: 'public/images/oll/advanced/17.png',
       algorithm: "F R' F' R2 r' U R U' R' U' M'"
     },
     '18': {
-      icon: '/images/oll/advanced/18.png',
+      icon: 'public/images/oll/advanced/18.png',
       algorithm: "r U R' U R U2 r2 U' R U' R' U2 r"
     },
     '19': {
-      icon: '/images/oll/advanced/19.png',
+      icon: 'public/images/oll/advanced/19.png',
       algorithm: "r' R U R U R' U' M' R' F R F'"
     },
     '20': {
-      icon: '/images/oll/advanced/20.png',
+      icon: 'public/images/oll/advanced/20.png',
       algorithm: "r U R' U' M2 U R U' R' U' M'"
     },
     '9': {
-      icon: '/images/oll/advanced/9.png',
+      icon: 'public/images/oll/advanced/9.png',
       algorithm: "R U R' U' R' F R2 U R' U' F'"
     },
     '10': {
-      icon: '/images/oll/advanced/10.png',
+      icon: 'public/images/oll/advanced/10.png',
       algorithm: "R U R' U R' F R F' R U2 R'"
     },
     '35': {
-      icon: '/images/oll/advanced/35.png',
+      icon: 'public/images/oll/advanced/35.png',
       algorithm: "R U2 R2 F R F' R U2 R'"
     },
     '37': {
-      icon: '/images/oll/advanced/37.png',
+      icon: 'public/images/oll/advanced/37.png',
       algorithm: "F R' F' R U R U' R'"
     },
     '51': {
-      icon: '/images/oll/advanced/51.png',
+      icon: 'public/images/oll/advanced/51.png',
       algorithm: "F U R U' R' U R U' R' F'"
     },
     '52': {
-      icon: '/images/oll/advanced/52.png',
+      icon: 'public/images/oll/advanced/52.png',
       algorithm: "R U R' U R U' B U' B' R'"
     },
     '55': {
-      icon: '/images/oll/advanced/55.png',
+      icon: 'public/images/oll/advanced/55.png',
       algorithm: "R' F R U R U' R2 F' R2 U' R' U R U R'"
     },
     '56': {
-      icon: '/images/oll/advanced/56.png',
+      icon: 'public/images/oll/advanced/56.png',
       algorithm: "r' U' r U' R' U R U' R' U R r' U r"
     },
     '13': {
-      icon: '/images/oll/advanced/13.png',
+      icon: 'public/images/oll/advanced/13.png',
       algorithm: "F U R U' R2 F' R U R U' R'"
     },
     '14': {
-      icon: '/images/oll/advanced/14.png',
+      icon: 'public/images/oll/advanced/14.png',
       algorithm: "R' F R U R' F' R F U' F'"
     },
     '15': {
-      icon: '/images/oll/advanced/15.png',
+      icon: 'public/images/oll/advanced/15.png',
       algorithm: "l' U' l L' U' L U l' U l"
     },
     '16': {
-      icon: '/images/oll/advanced/16.png',
+      icon: 'public/images/oll/advanced/16.png',
       algorithm: "r U r' R U R' U' r U' r'"
     },
     '31': {
-      icon: '/images/oll/advanced/31.png',
+      icon: 'public/images/oll/advanced/31.png',
       algorithm: "R' U' F U R U' R' F' R"
     },
     '32': {
-      icon: '/images/oll/advanced/32.png',
+      icon: 'public/images/oll/advanced/32.png',
       algorithm: "L U F' U' L' U L F L'"
     },
     '43': {
-      icon: '/images/oll/advanced/43.png',
+      icon: 'public/images/oll/advanced/43.png',
       algorithm: "F' U' L' U L F"
     },
     '44': {
-      icon: '/images/oll/advanced/44.png',
+      icon: 'public/images/oll/advanced/44.png',
       algorithm: "F U R U' R' F'"
     },
     '47': {
-      icon: '/images/oll/advanced/47.png',
+      icon: 'public/images/oll/advanced/47.png',
       algorithm: "R' U' R' F R F' R' F R F' U R"
     },
     '48': {
-      icon: '/images/oll/advanced/48.png',
+      icon: 'public/images/oll/advanced/48.png',
       algorithm: "F R U R' U' R U R' U' F'"
     },
     '49': {
-      icon: '/images/oll/advanced/49.png',
+      icon: 'public/images/oll/advanced/49.png',
       algorithm: "r U' r2 U r2 U r2 U' r"
     },
     '50': {
-      icon: '/images/oll/advanced/50.png',
+      icon: 'public/images/oll/advanced/50.png',
       algorithm: "r' U r2 U' r2 U' r2 U r'"
     },
     '53': {
-      icon: '/images/oll/advanced/53.png',
+      icon: 'public/images/oll/advanced/53.png',
       algorithm: "l' U2 L U L' U' L U L' U l"
     },
     '54': {
-      icon: '/images/oll/advanced/54.png',
+      icon: 'public/images/oll/advanced/54.png',
       algorithm: "r U2 R' U' R U R' U' R U' r'"
     },
     '7': {
-      icon: '/images/oll/advanced/7.png',
+      icon: 'public/images/oll/advanced/7.png',
       algorithm: "r U R' U R U2 r'"
     },
     '8': {
-      icon: '/images/oll/advanced/8.png',
+      icon: 'public/images/oll/advanced/8.png',
       algorithm: "l' U' L U' L' U2 l"
     },
     '11': {
-      icon: '/images/oll/advanced/11.png',
+      icon: 'public/images/oll/advanced/11.png',
       algorithm: "r U R' U R' F R F' R U2 r'"
     },
     '12': {
-      icon: '/images/oll/advanced/12.png',
+      icon: 'public/images/oll/advanced/12.png',
       algorithm: "M' R' U' R U' R' U2 R U' R r'"
     },
     '5': {
-      icon: '/images/oll/advanced/5.png',
+      icon: 'public/images/oll/advanced/5.png',
       algorithm: "l' U2 L U L' U l"
     },
     '6': {
-      icon: '/images/oll/advanced/6.png',
+      icon: 'public/images/oll/advanced/6.png',
       algorithm: "r U2 R' U' R U' r'"
     },
     '33': {
-      icon: '/images/oll/advanced/33.png',
+      icon: 'public/images/oll/advanced/33.png',
       algorithm: "R U R' U' R' F R F'"
     },
     '45': {
-      icon: '/images/oll/advanced/45.png',
+      icon: 'public/images/oll/advanced/45.png',
       algorithm: "F R U R' U' F'"
     },
     '36': {
-      icon: '/images/oll/advanced/36.png',
+      icon: 'public/images/oll/advanced/36.png',
       algorithm: "L' U' L U' L' U L U L F' L' F"
     },
     '38': {
-      icon: '/images/oll/advanced/38.png',
+      icon: 'public/images/oll/advanced/38.png',
       algorithm: "R U R' U R U' R' U' R' F R F'"
     },
   },
 
   'Cross Orient Last Layer (COLL)': {
     'H1': {
-      icon: '/images/coll/H1.png',
+      icon: 'public/images/coll/H1.png',
       algorithm: "R U R' U R U' R' U R U2 R'"
     },
     'H2': {
-      icon: '/images/coll/H2.png',
+      icon: 'public/images/coll/H2.png',
       algorithm: "F R U' R' U R U2 R' U' R U R' U' F'"
     },
     'H3': {
-      icon: '/images/coll/H3.png',
+      icon: 'public/images/coll/H3.png',
       algorithm: "R U R' U R U L' U R' U' L"
     },
     'H4': {
-      icon: '/images/coll/H4.png',
+      icon: 'public/images/coll/H4.png',
       algorithm: "F R U R' U' R U R' U' R U R' U' F'"
     },
     'L1': {
-      icon: '/images/coll/L1.png',
+      icon: 'public/images/coll/L1.png',
       algorithm: "R' U2 R U R' U' R U R' U' R U R' U R"
     },
     'L2': {
-      icon: '/images/coll/L2.png',
+      icon: 'public/images/coll/L2.png',
       algorithm: "R' U2 R' D' R U2 R' D R2"
     },
     'L3': {
-      icon: '/images/coll/L3.png',
+      icon: 'public/images/coll/L3.png',
       algorithm: "R U2 R D R' U2 R D' R2"
     },
     'L4': {
-      icon: '/images/coll/L4.png',
+      icon: 'public/images/coll/L4.png',
       algorithm: "F R' F' r U R U' r'"
     },
     'L5': {
-      icon: '/images/coll/L5.png',
+      icon: 'public/images/coll/L5.png',
       algorithm: "x R' U R D' R' U' R D"
     },
     'L6': {
-      icon: '/images/coll/L6.png',
+      icon: 'public/images/coll/L6.png',
       algorithm: "R' U' R U R' F' R U R' U' R' F R2"
     },
     'P1': {
-      icon: '/images/coll/P1.png',
+      icon: 'public/images/coll/P1.png',
       algorithm: "R U2 R2 U' R2 U' R2 U2 R"
     },
     'P2': {
-      icon: '/images/coll/P2.png',
+      icon: 'public/images/coll/P2.png',
       algorithm: "R' F2 R U2 R U2 R' F2 U' R U' R'"
     },
     'P3': {
-      icon: '/images/coll/P3.png',
+      icon: 'public/images/coll/P3.png',
       algorithm: "R' U' F' R U R' U' R' F R2 U2 R' U2 R"
     },
     'P4': {
-      icon: '/images/coll/P4.png',
+      icon: 'public/images/coll/P4.png',
       algorithm: "R U R' U' R' F R2 U R' U' R U R' U' F'"
     },
     'P5': {
-      icon: '/images/coll/P5.png',
+      icon: 'public/images/coll/P5.png',
       algorithm: "R U' L' U R' U L U L' U L"
     },
     'P6': {
-      icon: '/images/coll/P6.png',
+      icon: 'public/images/coll/P6.png',
       algorithm: "R2 D' R U R' D R U R U' R' U R U R' U R"
     },
     'T1': {
-      icon: '/images/coll/T1.png',
+      icon: 'public/images/coll/T1.png',
       algorithm: "R U2 R' U' R U' R2 U2 R U R' U R"
     },
     'T2': {
-      icon: '/images/coll/T2.png',
+      icon: 'public/images/coll/T2.png',
       algorithm: "R' U R U2 R' L' U R U' L"
     },
     'T3': {
-      icon: '/images/coll/T3.png',
+      icon: 'public/images/coll/T3.png',
       algorithm: "l' U' L U l F' L' F"
     },
     'T4': {
-      icon: '/images/coll/T4.png',
+      icon: 'public/images/coll/T4.png',
       algorithm: "F R U R' U' R U' R' U' R U R' F'"
     },
     'T5': {
-      icon: '/images/coll/T5.png',
+      icon: 'public/images/coll/T5.png',
       algorithm: "r U R' U' r' F R F'"
     },
     'T6': {
-      icon: '/images/coll/T6.png',
+      icon: 'public/images/coll/T6.png',
       algorithm: "R' U R2 D r' U2 r D' R2 U' R"
     },
     'U1': {
-      icon: '/images/coll/U1.png',
+      icon: 'public/images/coll/U1.png',
       algorithm: "R' U' R U' R' U2 R2 U R' U R U2 R'"
     },
     'U2': {
-      icon: '/images/coll/U2.png',
+      icon: 'public/images/coll/U2.png',
       algorithm: "R' F R U' R' U' R U R' F' R U R' U' R' F R F' R"
     },
     'U3': {
-      icon: '/images/coll/U3.png',
+      icon: 'public/images/coll/U3.png',
       algorithm: "R2 D R' U2 R D' R' U2 R'"
     },
     'U4': {
-      icon: '/images/coll/U4.png',
+      icon: 'public/images/coll/U4.png',
       algorithm: "F R U' R' U R U R' U R U' R' F'"
     },
     'U5': {
-      icon: '/images/coll/U5.png',
+      icon: 'public/images/coll/U5.png',
       algorithm: "R2 D' R U2 R' D R U2 R"
     },
     'U6': {
-      icon: '/images/coll/U6.png',
+      icon: 'public/images/coll/U6.png',
       algorithm: "R2 D' R U R' D R U R U' R' U' R"
     },
   },
@@ -439,114 +440,114 @@ const algortihms = {
 
   'Permutate Last Layer (PLL)': {
     'Diagonal': {
-      icon: '/images/pll/diagonal.png',
+      icon: 'public/images/pll/diagonal.png',
       algorithm: "F R U' R' U' R U R' F' R U R' U' R' F R F'"
     },
     'Headlights': {
-      icon: '/images/pll/headlights.png',
+      icon: 'public/images/pll/headlights.png',
       algorithm: "R U R' U' R' F R2 U' R' U' R U R' F'"
     },
     'PLL-H': {
-      icon: '/images/pll/pll-h.png',
+      icon: 'public/images/pll/pll-h.png',
       algorithm: "M2 U M2 U2 M2 U M2"
     },
     'PLL-Ua': {
-      icon: '/images/pll/pll-ua.png',
+      icon: 'public/images/pll/pll-ua.png',
       algorithm: "R U' R U R U R U' R' U' R2"
     },
     'PLL-Ub': {
-      icon: '/images/pll/pll-ub.png',
+      icon: 'public/images/pll/pll-ub.png',
       algorithm: "R2 U R U R' U' R' U' R' U R'"
     },
     'PLL-Z': {
-      icon: '/images/pll/pll-z.png',
+      icon: 'public/images/pll/pll-z.png',
       algorithm: "M' U M2 U M2 U M' U2 M2"
     },
   },
   
   'Advanced PLL': {
     'Aa': {
-      icon: '/images/pll/advanced/Aa.png',
+      icon: 'public/images/pll/advanced/Aa.png',
       algorithm: "x L2 D2 L' U' L D2 L' U L'"
     },
     'Ab': {
-      icon: '/images/pll/advanced/Ab.png',
+      icon: 'public/images/pll/advanced/Ab.png',
       algorithm: "x' L2 D2 L U L' D2 L U' L"
     },
     'F': {
-      icon: '/images/pll/advanced/F.png',
+      icon: 'public/images/pll/advanced/F.png',
       algorithm: "R' U' F' R U R' U' R' F R2 U' R' U' R U R' U R"
     },
     'Ga': {
-      icon: '/images/pll/advanced/Ga.png',
+      icon: 'public/images/pll/advanced/Ga.png',
       algorithm: "R2 U R' U R' U' R U' R2 U' D R' U R D'"
     },
     'Gb': {
-      icon: '/images/pll/advanced/Gb.png',
+      icon: 'public/images/pll/advanced/Gb.png',
       algorithm: "R' U' R U D' R2 U R' U R U' R U' R2 D"
     },
     'Gc': {
-      icon: '/images/pll/advanced/Gc.png',
+      icon: 'public/images/pll/advanced/Gc.png',
       algorithm: "R2 U' R U' R U R' U R2 U D' R U' R' D"
     },
     'Gd': {
-      icon: '/images/pll/advanced/Gd.png',
+      icon: 'public/images/pll/advanced/Gd.png',
       algorithm: "R U R' U' D R2 U' R U' R' U R' U R2 D'"
     },
     'Ja': {
-      icon: '/images/pll/advanced/Ja.png',
+      icon: 'public/images/pll/advanced/Ja.png',
       algorithm: "x R2 F R F' R U2 r' U r U2"
     },
     'Jb': {
-      icon: '/images/pll/advanced/Jb.png',
+      icon: 'public/images/pll/advanced/Jb.png',
       algorithm: "R U R' F' R U R' U' R' F R2 U' R'"
     },
     'Ra': {
-      icon: '/images/pll/advanced/Ra.png',
+      icon: 'public/images/pll/advanced/Ra.png',
       algorithm: "R U' R' U' R U R D R' U' R D' R' U2 R'"
     },
     'Rb': {
-      icon: '/images/pll/advanced/Rb.png',
+      icon: 'public/images/pll/advanced/Rb.png',
       algorithm: "R2 F R U R U' R' F' R U2 R' U2 R"
     },
     'T': {
-      icon: '/images/pll/advanced/T.png',
+      icon: 'public/images/pll/advanced/T.png',
       algorithm: "R U R' U' R' F R2 U' R' U' R U R' F'"
     },
     'E': {
-      icon: '/images/pll/advanced/E.png',
+      icon: 'public/images/pll/advanced/E.png',
       algorithm: "x' L' U L D' L' U' L D L' U' L D' L' U L D"
     },
     'Na': {
-      icon: '/images/pll/advanced/Na.png',
+      icon: 'public/images/pll/advanced/Na.png',
       algorithm: "R U R' U R U R' F' R U R' U' R' F R2 U' R' U2 R U' R'"
     },
     'Nb': {
-      icon: '/images/pll/advanced/Nb.png',
+      icon: 'public/images/pll/advanced/Nb.png',
       algorithm: "R' U R U' R' F' U' F R U R' F R' F' R U' R"
     },
     'V': {
-      icon: '/images/pll/advanced/V.png',
+      icon: 'public/images/pll/advanced/V.png',
       algorithm: "R' U R' U' y R' F' R2 U' R' U R' F R F"
     },
     'Y': {
-      icon: '/images/pll/advanced/Y.png',
+      icon: 'public/images/pll/advanced/Y.png',
       algorithm: "F R U' R' U' R U R' F' R U R' U' R' F R F'"
     },
     'H': {
-      icon: '/images/pll/advanced/H.png',
+      icon: 'public/images/pll/advanced/H.png',
       algorithm: "M2 U M2 U2 M2 U M2"
     },
     'Ua': {
-      icon: '/images/pll/advanced/Ua.png',
+      icon: 'public/images/pll/advanced/Ua.png',
       algorithm: "M2 U M U2 M' U M2"
     },
     'Ub': {
-      icon: '/images/pll/advanced/Ub.png',
+      icon: 'public/images/pll/advanced/Ub.png',
       algorithm: "M2 U' M U2 M' U' M2"
     },
     'Z': {
-      icon: '/images/pll/advanced/Z.png',
+      icon: 'public/images/pll/advanced/Z.png',
       algorithm: "M' U M2 U M2 U M' U2 M2M' U M2 U M2 U M' U2 M2"
     },
   },
@@ -603,7 +604,7 @@ keyLight.shadow.camera.far = 500;
 
 // load and configure the cube
 const loader = new GLTFLoader();
-loader.load('/models/rubiks_cube.glb', gltf => {
+loader.load('public/models/rubiks_cube.glb', gltf => {
   root = gltf.scene;
   cube = root.getObjectByName('Cube');
 
@@ -1187,7 +1188,7 @@ async function resetCube() {
   
   // reload the cube model
   return new Promise((resolve) => {
-    loader.load('/models/rubiks_cube.glb', gltf => {
+    loader.load('public/models/rubiks_cube.glb', gltf => {
       root = gltf.scene;
       cube = root.getObjectByName('Cube');
 
