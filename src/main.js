@@ -1,7 +1,7 @@
-import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.177.0/build/three.module.js';
-import { OrbitControls } from 'https://cdn.jsdelivr.net/npm/three@0.177.0/examples/jsm/controls/OrbitControls.js';
-import { GLTFLoader } from 'https://cdn.jsdelivr.net/npm/three@0.177.0/examples/jsm/loaders/GLTFLoader.js';
-import { gsap } from 'https://cdn.jsdelivr.net/npm/gsap@3.12.2/index.js';
+import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.177.0/build/three.module.js";
+import { OrbitControls } from "https://cdn.jsdelivr.net/npm/three@0.177.0/examples/jsm/controls/OrbitControls.js";
+import { GLTFLoader } from "https://cdn.jsdelivr.net/npm/three@0.177.0/examples/jsm/loaders/GLTFLoader.js:";
+import { gsap } from "https://cdn.jsdelivr.net/npm/gsap@3.12.2/index.js";
 
 // DOM elements
 const dropdownContent = document.querySelector('.dropdown-content');
